@@ -1,7 +1,6 @@
 import * as apiProvider from './provider';
 
 export function ApiCore (resource) {
-  
   this.getAll = (config = {}) => {
     return apiProvider.getAll(resource, config);
   };
@@ -12,7 +11,7 @@ export function ApiCore (resource) {
 
   this.post = (data = {}, config = {}) => {
     return apiProvider.post(resource, data, config);
-  }
+  };
 
   this.put = (data = {}, config = {}) => {
     return apiProvider.put(resource, data, config);
@@ -25,5 +24,4 @@ export function ApiCore (resource) {
   this.remove = (data = {}, config = {}) => {
     return apiProvider.remove(resource, data, config);
   };
-
 }

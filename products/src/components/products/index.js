@@ -1,7 +1,8 @@
 import React from 'react';
 import { fetchProductsAction } from 'store/actions';
 import { useStore } from 'store/store';
-export function Products(props) {
+
+export function Products (props) {
   const { currentState, dispatcher } = useStore('products');
   return (
     <div>
@@ -10,8 +11,8 @@ export function Products(props) {
       {
         currentState?.products.map((item) => {
           return (
-            <div key={item.id}>{item.title}</div>
-          )
+            <div key={ item.id }>{item.title}</div>
+          );
         })
       }
     </div>

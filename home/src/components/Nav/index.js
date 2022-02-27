@@ -1,22 +1,23 @@
 import React from 'react';
 import { useStore } from 'store/store';
 
-export function NavigationBar(props) {
+export function NavigationBar (props) {
   const { currentState } = useStore('products');
-  console.log('currentState', currentState)
   return (
     <nav className="flex bg-blue-500 p-1 px-2 text-white">
       <div className="mr-3">
-          Home
+        Home
       </div>
       <div className="mr-3">
-          Products
+        Products
       </div>
       <div className="mr-3">
-          Contact
+        Contact
       </div>
       <div className="ml-auto">
-        card ({currentState.products.length})
+        card (
+        {currentState.products.length}
+        )
       </div>
     </nav>
   );

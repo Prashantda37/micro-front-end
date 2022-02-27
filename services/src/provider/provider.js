@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export const getAll = (resource, config = {}) => {
   return axios.get(`${resource}`, config);
-}
+};
 
 /** @param {string} resource */
 /** @param {string} id */
