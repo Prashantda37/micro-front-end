@@ -1,18 +1,18 @@
 import axios from 'axios';
 
-export function init() {
+export function init () {
   interceptors();
   defaults();
 }
 
-function interceptors() {
-  axios.interceptors.response.use(function (response) {
-    if(response.status >= 400) {
+function interceptors () {
+  axios.interceptors.response.use((response) => {
+    if (response.status >= 400) {
       throw response;
     } else {
       return response;
     }
-  }, function (error) {
+  }, (error) => {
     if (error.data) {
       _logError(error);
     }
@@ -20,14 +20,14 @@ function interceptors() {
   });
 }
 
-function defaults() {
-  axios.defaults.validateStatus = (status) => status < 400;
+function defaults () {
+  axios.defaults.validateStatus = status => status < 400;
 }
 
-export function setBaseUrl(url) {
+export function setBaseUrl (url) {
   axios.defaults.baseURL = url;
 }
 
 function _logError (error) {
-  axios.post(`/logging/clientError`, error);
+  axios.post('/logging/clientError', error);
 }

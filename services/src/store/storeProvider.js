@@ -12,7 +12,7 @@ apiUtils.setBaseUrl(BASE_URL);
 apiUtils.init();
 
 export function useStore (storeName) {
-  const currentState = useSelector(state => state[storeName]);
+  const currentState = useSelector(state => state[storeName] || state);
   const dispatcher = useDispatch();
   return { currentState, dispatcher };
 }

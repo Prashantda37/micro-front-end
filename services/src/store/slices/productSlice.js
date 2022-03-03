@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 function fetch (state, action) {
-  state.products = action.payload
+  state.products = action.payload;
 }
 
 export const productSlice = createSlice({
-  name: "products",
+  name: 'products',
   initialState: {
     products: [],
-    error: null
+    error: null,
   },
   reducers: {
     fetchProducts: fetch,
-  }
+  },
 });
 
-export const {  fetchProducts } = productSlice.actions; 
+export const { fetchProducts } = productSlice.actions;
 
 export default productSlice.reducer;
