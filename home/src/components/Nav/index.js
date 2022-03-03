@@ -15,9 +15,12 @@ export function NavigationBar (props) {
         Contact
       </div>
       <div className="ml-auto">
-        card (
+        {/* <i className="fa fa-user-plus"></i>
+        {' '}
+        Sign In */}
+        {/* card (
         {currentState.products.length}
-        )
+        ) */}
       </div>
     </nav>
   );
