@@ -1,16 +1,27 @@
 import * as services from '../../services';
-import { handleLoginModal } from '../slices';
+import {
+  handleLoginModal,
+  init as initAction,
+  handleAuthenticationSuccess,
+  handleAuthenticationFailure,
+} from '../slices';
 
-const { products } = services;
-
+const { auth } = services;
 export function handleLoginModalAction () {
   return (dispatch) => {
     dispatch(handleLoginModal());
-    // products.getAll(params).then((res) => {
-    //   const { data } = res;
-    //   dispatch(fetchProducts(data));
-    // }).catch((error) => {
-    //   console.log(error);
-    // });
+  };
+}
+
+export function handleLoginAction (credential) {
+  return (dispatch) => {
+    dispatch(initAction());
+    setTimeout(() => {
+      dispatch(handleAuthenticationSuccess(credential));
+     }, 2000);
+    // dispatch(handleAuthenticationSuccess(credential));
+    // services
+    // console.log(credential, auth)
+    // auth.post(credential)
   };
 }
