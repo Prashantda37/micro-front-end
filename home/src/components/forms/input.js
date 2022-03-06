@@ -23,6 +23,7 @@ export function Input ({
         id={ name }
         type={ type }
         name={ name }
+        data-testid={ name }
         className={ classes }
         { ...attr }
       />

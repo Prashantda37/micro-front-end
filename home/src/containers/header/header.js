@@ -34,8 +34,8 @@ export function Header (props) {
         </div>
       </div>
       <div className="ml-auto text-sm">
-        <Button variant="secondary" onClick={ isLoginModalOpen }>
-          <FA icon={ ['fa', 'user'] } />
+        <Button variant="outline-secondar" onClick={ isLoginModalOpen }>
+          <FA icon={ ['fa', 'fa-sign-in'] } />
         </Button>
       </div>
       {_renderLoginModal()}

@@ -4,9 +4,12 @@ import {
   Button,
 } from 'react-bootstrap';
 import { useFormik } from 'formik';
+import { handleLoginAction } from 'store/actions';
+import { useStore } from 'store/store';
 import { Input } from '../../forms';
 
 export function LoginModal ({ isOpen, toggle }) {
+  const { dispatcher } = useStore('authentication');
   const formik = useFormik({
     initialValues: {
       userEmail: '',
@@ -16,7 +19,8 @@ export function LoginModal ({ isOpen, toggle }) {
   });
 
   function _handleSubmit (value) {
-    console.log(value);
+    const params = { username: value.userEmail, password: value.userPassword };
+    dispatcher(handleLoginAction(params));
   }
 
   return (
@@ -24,10 +28,9 @@ export function LoginModal ({ isOpen, toggle }) {
       show={ isOpen }
       onHide={ () => toggle(false) }
       dialogClassName="modal-90w"
-      aria-labelledby="example-custom-modal-styling-title"
     >
       <Modal.Header closeButton>
-        <Modal.Title id="example-custom-modal-styling-title">
+        <Modal.Title>
           Login
         </Modal.Title>
       </Modal.Header>
@@ -53,7 +56,9 @@ export function LoginModal ({ isOpen, toggle }) {
           <Button
             type="submit"
             variant="primary"
+            disabled={ formik.isSubmitting }
             onClick={ formik.handleSubmit }
+            data-testid="submit"
           >
             Login
           </Button>
