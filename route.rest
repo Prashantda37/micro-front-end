@@ -1,0 +1,33 @@
+GET http://localhost:3737/v1/users
+
+###
+
+POST http://localhost:3737/v1/users
+Content-Type: application/json
+
+{
+    "name": "Prashant Dahiwadkar",
+    "username": "prashant",
+    "password": "123456",
+    "age": 32,
+    "address": "Pune"
+}
+
+###
+
+POST http://localhost:3737/v1/login
+Content-Type: application/json
+
+{
+    "username": "prashant",
+    "password": "123456"
+}
+
+### verify token with server
+POST http://localhost:3737/v1/token
+Content-Type: application/json
+Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyMjFkMjY1M2JjNDRkYjVmZTFhYThkNiIsIm5hbWUiOiJQcmFzaGFudCBEYWhpd2Fka2FyIiwidXNlcm5hbWUiOiJwcmFzaGFudCIsImFnZSI6MzIsImFkZHJlc3MiOiJQdW5lIiwiX192IjowfSwiaWF0IjoxNjQ2NTg5OTg1LCJleHAiOjE2NDY1OTAwMDN9.QfjGZ9FKCgXjVefyp8ugDypGdn50VRtK1hLk4kaDNaY
+
+
+
+
