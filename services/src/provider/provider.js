@@ -54,3 +54,12 @@ export const remove = (resource, data = {}, config = {}) => {
 
   return axios.delete(`/${resourceUrl}`, data);
 };
+
+/** @param {resource} string */
+/** @param {any} data */
+export const custom = (resource, data) => {
+  return axios({
+    url: `/${resource}`,
+    ...data,
+  });
+};

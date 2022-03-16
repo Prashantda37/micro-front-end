@@ -1,8 +1,11 @@
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+// const Dotenv = require('dotenv-webpack');
 
 const deps = require('./package.json').dependencies;
+
+// const ENV = process.env.NODE_ENV;
 
 module.exports = {
   output: {
@@ -11,6 +14,9 @@ module.exports = {
 
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+    fallback: {
+      path: require.resolve('path-browserify'),
+    },
   },
 
   devServer: {
@@ -45,8 +51,8 @@ module.exports = {
     new webpack.DefinePlugin({
       allowEmptyValues: true,
       'process.env': {
+        // ENV: JSON.stringify(ENV),
         BASE_URL: JSON.stringify(process.env.API_URL),
-
       },
     }),
     new ModuleFederationPlugin({

@@ -5,6 +5,7 @@ function initAction (state, actions) {
 }
 
 function handleAuthSuccessAction (state, actions) {
+  state.error = null;
   state.authUser = actions.payload;
   state.isLoading = !state.isLoading;
 }

@@ -16,12 +16,10 @@ export function handleLoginModalAction () {
 export function handleLoginAction (credential) {
   return (dispatch) => {
     dispatch(initAction());
-    setTimeout(() => {
-      dispatch(handleAuthenticationSuccess(credential));
-     }, 2000);
-    // dispatch(handleAuthenticationSuccess(credential));
-    // services
-    // console.log(credential, auth)
-    // auth.post(credential)
+    auth.login(credential).then((res) => {
+      dispatch(handleAuthenticationSuccess(res?.data));
+    }).catch((error) => {
+      dispatch(handleAuthenticationFailure(error.response.data));
+    });
   };
 }
