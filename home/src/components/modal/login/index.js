@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Modal,
   Button,
@@ -9,7 +9,8 @@ import { useStore } from 'store/store';
 import { Input } from '../../forms';
 
 export function LoginModal ({ isOpen, toggle }) {
-  const { dispatcher } = useStore('authentication');
+  const [error, setError] = useState(false);
+  const { currentState, dispatcher } = useStore('authentication');
   const formik = useFormik({
     initialValues: {
       userEmail: '',
@@ -17,6 +18,15 @@ export function LoginModal ({ isOpen, toggle }) {
     },
     onSubmit: _handleSubmit,
   });
+
+  useEffect(() => {
+    if (currentState.error) {
+      formik.setSubmitting(false);
+      setError(true);
+    } else if (Object.keys(currentState.authUser).length > 0) {
+      toggle();
+    }
+  }, [currentState]);
 
   function _handleSubmit (value) {
     const params = { username: value.userEmail, password: value.userPassword };
@@ -35,6 +45,7 @@ export function LoginModal ({ isOpen, toggle }) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {error && <div className="text-red-500">{currentState.error}</div>}
         <form onSubmit={ formik.handleSubmit }>
           <Input
             label="User Email"
@@ -67,3 +78,5 @@ export function LoginModal ({ isOpen, toggle }) {
     </Modal>
   );
 }
+
+export default LoginModal;
