@@ -7,11 +7,12 @@ const Designation = require('../../models/designation');
 
 router.get('/users', async (req, res) => {
   try {
-    const usrs = await Designation
-      .find({"title": "Software Engineer 22"})
-      .populate('user');
+    // const usrs = await Designation
+    //   .find({"title": "Software Engineer 22"})
+    //   .populate('user');
+    const users = await User.find();
       
-    res.status(200).send(usrs)
+    res.status(200).send(users)
   } catch(err){
     res.status(500).send('Something went wrong!');
   }

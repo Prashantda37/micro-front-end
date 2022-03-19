@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
       if (user){
         const token = jwt.sign({ user }, process.env.SECRET_KEY, { expiresIn: EXPIRE_IN });
         const userInfo = {
-          expire: EXPIRE_IN,
+          expire: EXPIRE_IN, // need to be update for front end
           id: user._id,
           name: user.name,
           access_token: token,

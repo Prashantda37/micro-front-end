@@ -10,8 +10,20 @@ const db = mongoose.connection;
 db.on('error', (error) => console.log(error));
 db.once('open', () => console.log('DB connected'))
 
-// cors
-app.use(cors())
+// Configuration of CORS
+var allowlist = ['http://localhost:3000', 'http://example2.com']
+function corsOptionsDelegate(req, callback) {
+  let corsOptions;
+  if(allowlist.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false }; // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+}
+
+// Middleware
+app.use(cors(corsOptionsDelegate));
 app.use(express.json());
 
 // Routers defined
