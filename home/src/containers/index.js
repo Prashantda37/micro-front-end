@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { StoreProvider } from 'store/store';
 import AppContainer from './app';
 
@@ -20,7 +21,9 @@ import '../fontsConfig';
 // };
 ReactDOM.render(
   <StoreProvider>
-    <AppContainer />
+    <Router>
+      <AppContainer />
+    </Router>
   </StoreProvider>,
   document.getElementById('app'),
 );

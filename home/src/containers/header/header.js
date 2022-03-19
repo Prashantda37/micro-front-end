@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { handleLoginModalAction } from 'store/actions';
 import { useStore } from 'store/store';
 import { FA } from '../../components';
@@ -43,32 +44,42 @@ export function Header (props) {
       );
     }
     return (
-      <Button variant="outline-secondar" onClick={ isLoginModalOpen }>
-        <FA icon={ ['fa', 'fa-sign-in'] } />
-      </Button>
+      <div>
+        <Button variant="outline-secondar" onClick={ isLoginModalOpen }>
+          Sign In
+        </Button>
+        <Link to="/sign-up">
+          <Button variant="outline-secondar">
+            Sign Up
+          </Button>
+        </Link>
+      </div>
     );
   }
 
   return (
-    <div className="flex border-t-2 border-black bg-gray-100 p-1">
-      <div className="text-3xl mr-2 text-red-800">
-        HotSkill
-      </div>
-      <div className="flex pt-2 text-sm font-bold text-gray-500">
-        <div className="mr-1">
-          Categories
+    <div className="border-t-4 border-orange-500 bg-gray-100 p-1">
+      <div className="container flex">
+        <Link to="/">
+          <div className="text-2xl mr-4 text-orange-600">
+            Stack
+            {' '}
+            <span className="font-bold text-black">Overflow</span>
+          </div>
+        </Link>
+        <div className="flex pt-2 text-sm text-gray-500">
+          <div className="mr-2">
+            About
+          </div>
+          <div>
+            Products
+          </div>
         </div>
-        <div className="mr-1">
-          |
+        <div className="ml-auto text-sm">
+          { _renderProfile() }
         </div>
-        <div>
-          Products
-        </div>
+        {_renderLoginModal()}
       </div>
-      <div className="ml-auto text-sm">
-        { _renderProfile() }
-      </div>
-      {_renderLoginModal()}
     </div>
   );
 }

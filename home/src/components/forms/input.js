@@ -1,21 +1,25 @@
 import React from 'react';
 import classNames from 'classnames';
+import { ErrorMessage } from '../ErrorMessage';
 
 export function Input ({
   label,
   name,
   type = 'text',
   inputClassName,
+  errorMessage,
   ...attr
 }) {
   const classes = classNames(
-    'rl-input min-h-32 w-full p-1',
+    'rl-input min-h-32 w-full p-2',
     inputClassName,
-    'border border-solid rounded transition-colors duration-300 ring-transparent outline-none',
+    { 'border border-solid': !errorMessage },
+    'rounded outline-none',
     'group-focus:outline-none focus:z-10',
+    { 'border-1 border-red-500': errorMessage },
   );
   return (
-    <div className="p-1">
+    <div>
       <label htmlFor={ name } className="text-gray-500">
         {label}
       </label>
@@ -27,6 +31,9 @@ export function Input ({
         className={ classes }
         { ...attr }
       />
+      {errorMessage ? (
+        <ErrorMessage>{errorMessage}</ErrorMessage>
+      ) : null}
     </div>
   );
 }
